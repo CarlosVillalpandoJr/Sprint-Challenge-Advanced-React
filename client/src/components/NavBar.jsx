@@ -11,7 +11,7 @@ const NavBar = () => {
     return (
         <div>
             <h1>Advanced React: Women's World Cup</h1>
-            <button onClick={toggleDark}>Enable Dark Mode</button>
+            <button data-testid='toggle-button' onClick={toggleDark}>Enable Dark Mode</button>
         </div>
     )
 }
