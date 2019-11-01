@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 
+import NavBar from './components/NavBar';
 import PlayerCard from './components/PlayerCard';
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Advanced React: Women's World Cup</h1>
+        <NavBar />
         {this.state.playerData.map((player, id) => {
           return (
             <PlayerCard player={player} key={player.id}/>
