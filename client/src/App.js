@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import PlayerCard from './components/PlayerCard';
+
+class App extends Component {
+  state = {
+    playerData: []
+  }
+
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/api/players')
+      .then(res => {
+        // console.log(res.data)
+        this.setState({
+          playerData: res.data
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Advanced React: Women's World Cup</h1>
+        {this.state.playerData.map((player, id) => {
+          return (
+            <PlayerCard player={player} key={player.id}/>
+          )
+        })}
+      </div>
+    );
+  }
 }
 
 export default App;
